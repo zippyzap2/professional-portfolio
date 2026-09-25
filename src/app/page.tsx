@@ -1,3 +1,9 @@
+const contactLinks = {
+  email: "satishcode9@gmail.com",
+  linkedin: "https://www.linkedin.com/in/k-dev-engineer/",
+  resume: "/resume.pdf",
+};
+
 const metrics = [
   { value: "40%", label: "Lower API latency" },
   { value: "10M+", label: "Requests handled daily" },
@@ -122,27 +128,63 @@ export default function Home() {
         <div className="hero-glow hero-glow-one" aria-hidden="true" />
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-20 sm:pt-28">
+        <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-8 sm:pt-12">
           <div className="max-w-4xl animate-fade-up">
             <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-slate-300">
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
               Senior Software Engineer
             </div>
 
-            <h1 className="max-w-4xl text-5xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+              Satish Kumar Bezawada
+            </h1>
+            <p className="mt-5 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] text-slate-100 sm:text-3xl">
               Building scalable systems that create{" "}
               <span className="bg-gradient-to-r from-sky-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
                 measurable impact.
               </span>
-            </h1>
+            </p>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-400 sm:text-xl">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-400 sm:text-xl">
               I specialize in distributed systems, cloud architecture, and
               technical leadership, turning complex engineering challenges into
               reliable platforms and durable business outcomes.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-400">
+              <span className="inline-flex items-center gap-2">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className="h-4 w-4 text-sky-400"
+                >
+                  <path
+                    d="M10 17s5-4.35 5-9a5 5 0 1 0-10 0c0 4.65 5 9 5 9Z"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <circle
+                    cx="10"
+                    cy="8"
+                    r="1.75"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                  />
+                </svg>
+                United States
+              </span>
+              {/* Availability message hidden for now.
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.7)]" />
+                Open to senior engineering opportunities
+              </span>
+              */}
+            </div>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="#impact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-sky-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-300"
@@ -151,10 +193,28 @@ export default function Home() {
                 <ArrowIcon />
               </a>
               <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
+                href={`mailto:${contactLinks.email}`}
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
               >
-                Start a conversation
+                Email
+              </a>
+              <a
+                href={contactLinks.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
+              >
+                LinkedIn
+                <ArrowIcon />
+              </a>
+              <a
+                href={contactLinks.resume}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
+              >
+                Résumé
+                <ArrowIcon />
               </a>
             </div>
           </div>
