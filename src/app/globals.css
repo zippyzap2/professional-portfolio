@@ -72,6 +72,67 @@ body {
   animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+a[href],
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a[href]:active,
+button:active {
+  transform: scale(0.985);
+}
+
+.diagram-scroll {
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.diagram-node {
+  scroll-snap-align: center;
+}
+
+.page-transition-content {
+  min-height: 100vh;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.page-transition-content.is-leaving {
+  opacity: 0;
+  transform: translateY(10px) scale(0.997);
+  pointer-events: none;
+}
+
+.page-transition-content.is-entering {
+  animation: page-enter 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -79,5 +140,29 @@ body {
 
   .animate-fade-up {
     animation: none;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  a[href]:active,
+  button:active {
+    transform: none;
+  }
+
+  .diagram-scroll {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  .page-transition-content {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
   }
 }

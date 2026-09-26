@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArchitectureDiagram } from "@/components/architecture-diagram";
+import { Reveal } from "@/components/reveal";
+import { TransitionLink } from "@/components/page-transition";
 import { caseStudies, getCaseStudy } from "@/content/case-studies";
 import { site } from "@/content/site";
 
@@ -66,7 +68,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     caseStudies[(currentIndex + 1) % caseStudies.length] ?? caseStudies[0];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
+    <main className="min-h-screen overflow-x-clip bg-slate-950 text-slate-100">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/85 backdrop-blur-xl">
         <nav
           aria-label="Primary navigation"
@@ -109,7 +111,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </nav>
       </header>
 
-      <section className="relative border-b border-white/10">
+      <section className="relative overflow-hidden border-b border-white/10">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" aria-hidden="true" />
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
@@ -197,15 +199,14 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <p className="text-base leading-8 text-slate-300">{study.challenge}</p>
             <div className="mt-8 grid gap-3">
               {study.constraints.map((constraint, index) => (
-                <div
-                  key={constraint}
-                  className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.025] p-5"
-                >
+                <Reveal key={constraint} delay={index * 70}>
+                  <div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.025] p-5">
                   <span className="font-mono text-sm text-sky-400">
                     0{index + 1}
                   </span>
                   <p className="text-sm leading-7 text-slate-400">{constraint}</p>
-                </div>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -239,10 +240,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {study.delivery.map((item, index) => (
-            <article
-              key={item.title}
-              className="rounded-2xl border border-white/10 bg-white/[0.025] p-7"
-            >
+            <Reveal key={item.title} delay={index * 80} className="h-full">
+              <article className="h-full rounded-2xl border border-white/10 bg-white/[0.025] p-7">
               <span className="font-mono text-sm text-sky-400">
                 0{index + 1}
               </span>
@@ -252,7 +251,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               <p className="mt-3 text-sm leading-7 text-slate-400">
                 {item.description}
               </p>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -269,18 +269,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2">
-            {study.outcomes.map((outcome) => (
-              <article
-                key={outcome.title}
-                className="rounded-2xl border border-sky-400/20 bg-sky-400/[0.035] p-7"
-              >
+            {study.outcomes.map((outcome, index) => (
+              <Reveal key={outcome.title} delay={index * 80} className="h-full">
+                <article className="h-full rounded-2xl border border-sky-400/20 bg-sky-400/[0.035] p-7">
                 <h3 className="text-xl font-semibold text-white">
                   {outcome.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-400">
                   {outcome.description}
                 </p>
-              </article>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -344,13 +343,13 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 {nextStudy.summary}
               </p>
             </div>
-            <Link
+            <TransitionLink
               href={`/work/${nextStudy.slug}`}
               className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-100"
             >
               Read next case study
               <ArrowIcon />
-            </Link>
+            </TransitionLink>
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { TransitionLink } from "@/components/page-transition";
+import { Reveal } from "@/components/reveal";
 import { caseStudies } from "@/content/case-studies";
 import { site } from "@/content/site";
 
@@ -66,7 +67,7 @@ function ArrowIcon() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
+    <main className="min-h-screen overflow-x-clip bg-slate-950 text-slate-100">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
         <nav
           aria-label="Primary navigation"
@@ -110,7 +111,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section id="top" className="relative">
+      <section id="top" className="relative overflow-hidden">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" aria-hidden="true" />
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
@@ -122,7 +123,7 @@ export default function Home() {
               Senior Software Engineer
             </div>
 
-            <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-4xl text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
               Satish Kumar Bezawada
             </h1>
             <p className="mt-5 max-w-4xl text-2xl font-medium leading-tight tracking-[-0.03em] text-slate-100 sm:text-3xl">
@@ -226,8 +227,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="impact" className="scroll-mt-24 border-t border-white/10 py-24">
-        <div className="mx-auto max-w-6xl px-6">
+      <section className="border-t border-white/10 py-24">
+        <div id="impact" className="mx-auto max-w-6xl scroll-mt-20 px-6">
           <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">
@@ -245,12 +246,13 @@ export default function Home() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {caseStudies.map((study) => (
-              <Link
-                key={study.slug}
-                href={`/work/${study.slug}`}
-                className="group block"
-              >
+            {caseStudies.map((study, index) => (
+              <Reveal key={study.slug} delay={index * 80} className="h-full">
+                <TransitionLink
+                  key={study.slug}
+                  href={`/work/${study.slug}`}
+                  className="group block h-full"
+                >
                 <article className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-slate-900/70 p-7 transition duration-300 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-slate-900 sm:p-9">
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/60 to-transparent opacity-0 transition group-hover:opacity-100" />
 
@@ -290,17 +292,15 @@ export default function Home() {
                     </span>
                   </div>
                 </article>
-              </Link>
+                </TransitionLink>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section
-        id="approach"
-        className="scroll-mt-24 border-y border-white/10 bg-slate-900/50 py-24"
-      >
-        <div className="mx-auto max-w-6xl px-6">
+      <section className="border-y border-white/10 bg-slate-900/50 py-24">
+        <div id="approach" className="mx-auto max-w-6xl scroll-mt-20 px-6">
           <div className="max-w-2xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">
               How I work
@@ -312,10 +312,8 @@ export default function Home() {
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {approach.map((item, index) => (
-              <article
-                key={item.title}
-                className="rounded-2xl border border-white/10 bg-slate-950/60 p-7"
-              >
+              <Reveal key={item.title} delay={index * 90} className="h-full">
+                <article className="h-full rounded-2xl border border-white/10 bg-slate-950/60 p-7">
                 <span className="font-mono text-sm text-sky-400">
                   0{index + 1}
                 </span>
@@ -325,17 +323,15 @@ export default function Home() {
                 <p className="mt-3 text-sm leading-7 text-slate-400">
                   {item.description}
                 </p>
-              </article>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section
-        id="leadership"
-        className="scroll-mt-24 py-24"
-      >
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <section className="py-24">
+        <div id="leadership" className="mx-auto grid max-w-6xl scroll-mt-20 gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">
               Technical leadership
@@ -350,11 +346,9 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4">
-            {leadership.map((item) => (
-              <article
-                key={item.title}
-                className="grid gap-5 rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:grid-cols-[8rem_1fr] sm:items-center"
-              >
+            {leadership.map((item, index) => (
+              <Reveal key={item.title} delay={index * 90}>
+                <article className="grid gap-5 rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:grid-cols-[8rem_1fr] sm:items-center">
                 <p className="text-2xl font-semibold tracking-tight text-sky-300">
                   {item.metric}
                 </p>
@@ -364,14 +358,15 @@ export default function Home() {
                     {item.description}
                   </p>
                 </div>
-              </article>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="scroll-mt-24 px-6 pb-12 pt-8">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-sky-400/20 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/60 p-8 sm:p-12 lg:p-16">
+      <section className="flex min-h-[80vh] items-center px-6 pb-12 pt-8">
+        <div id="contact" className="relative mx-auto max-w-6xl scroll-mt-20 overflow-hidden rounded-3xl border border-sky-400/20 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/60 p-8 sm:p-12 lg:p-16">
           <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
           <div className="relative max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">

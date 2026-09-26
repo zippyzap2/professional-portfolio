@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/reveal";
+
 type ArchitectureStep = {
   label: string;
   detail: string;
@@ -8,12 +10,13 @@ export function ArchitectureDiagram({ steps }: { steps: ArchitectureStep[] }) {
     <div className="mt-12">
       <div
         aria-label={`Architecture flow with ${steps.length} stages`}
-        className="-mx-6 overflow-x-auto px-6 pb-4 [scrollbar-width:thin]"
+        className="diagram-scroll -mx-6 overflow-x-auto px-6 pb-4 [scrollbar-width:thin]"
       >
         <div className="flex min-w-max items-stretch">
           {steps.map((step, index) => (
             <div key={step.label} className="flex items-stretch">
-              <article className="w-64 shrink-0 rounded-2xl border border-white/10 bg-slate-950/80 p-5 shadow-[0_24px_80px_rgba(2,6,23,0.32)] sm:w-72">
+              <Reveal delay={index * 60} className="diagram-node w-64 shrink-0 sm:w-72">
+                <article className="h-full rounded-2xl border border-white/10 bg-slate-950/80 p-5 shadow-[0_24px_80px_rgba(2,6,23,0.32)]">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs text-sky-400">
                     {String(index + 1).padStart(2, "0")}
@@ -26,7 +29,8 @@ export function ArchitectureDiagram({ steps }: { steps: ArchitectureStep[] }) {
                 <p className="mt-3 text-sm leading-6 text-slate-400">
                   {step.detail}
                 </p>
-              </article>
+                </article>
+              </Reveal>
 
               {index < steps.length - 1 ? (
                 <div className="flex w-12 shrink-0 items-center justify-center">
