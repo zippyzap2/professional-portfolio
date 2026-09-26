@@ -1,33 +1,12 @@
-const contactLinks = {
-  email: "satishcode9@gmail.com",
-  linkedin: "https://www.linkedin.com/in/k-dev-engineer/",
-  resume: "/resume.pdf",
-};
+import Link from "next/link";
+import { caseStudies } from "@/content/case-studies";
+import { site } from "@/content/site";
 
 const metrics = [
   { value: "40%", label: "Lower API latency" },
   { value: "10M+", label: "Requests handled daily" },
   { value: "50+", label: "Services migrated" },
   { value: "3x", label: "Faster deployments" },
-];
-
-const caseStudies = [
-  {
-    category: "Distributed Systems",
-    title: "Scalable Caching Layer",
-    summary:
-      "Designed a tiered Redis caching strategy to improve performance across high-volume API workloads.",
-    result: "40% lower API latency",
-    tags: ["Redis", "High scale", "Performance"],
-  },
-  {
-    category: "Cloud Architecture",
-    title: "Kubernetes Migration",
-    summary:
-      "Led a large-scale migration to EKS, improving delivery speed while reducing infrastructure cost.",
-    result: "3x faster deployments",
-    tags: ["EKS", "Platform engineering", "Cost efficiency"],
-  },
 ];
 
 const approach = [
@@ -193,13 +172,13 @@ export default function Home() {
                 <ArrowIcon />
               </a>
               <a
-                href={`mailto:${contactLinks.email}`}
+                href={`mailto:${site.email}`}
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
               >
                 Email
               </a>
               <a
-                href={contactLinks.linkedin}
+                href={site.linkedIn}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
@@ -208,7 +187,7 @@ export default function Home() {
                 <ArrowIcon />
               </a>
               <a
-                href={contactLinks.resume}
+                href={site.resume}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/[0.07]"
@@ -257,47 +236,53 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {caseStudies.map((study) => (
-              <article
-                key={study.title}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/70 p-7 transition duration-300 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-slate-900 sm:p-9"
+              <Link
+                key={study.slug}
+                href={`/work/${study.slug}`}
+                className="group block"
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/60 to-transparent opacity-0 transition group-hover:opacity-100" />
+                <article className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-slate-900/70 p-7 transition duration-300 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-slate-900 sm:p-9">
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/60 to-transparent opacity-0 transition group-hover:opacity-100" />
 
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-sky-400">
-                  {study.category}
-                </p>
-                <h3 className="text-2xl font-semibold tracking-tight text-white">
-                  {study.title}
-                </h3>
-                <p className="mt-4 min-h-24 text-base leading-7 text-slate-400">
-                  {study.summary}
-                </p>
+                  <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-sky-400">
+                    {study.category}
+                  </p>
+                  <h3 className="text-2xl font-semibold tracking-tight text-white">
+                    {study.title}
+                  </h3>
+                  <p className="mt-4 min-h-24 text-base leading-7 text-slate-400">
+                    {study.summary}
+                  </p>
 
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {study.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-slate-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.14em] text-slate-500">
-                      Result
-                    </p>
-                    <p className="mt-1 font-semibold text-white">{study.result}</p>
+                  <div className="mt-7 flex flex-wrap gap-2">
+                    {study.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-slate-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <span className="text-xs font-medium text-slate-500">
-                    Case study in progress
-                  </span>
-                </div>
-              </article>
+
+                  <div className="mt-8 flex items-center justify-between gap-4 border-t border-white/10 pt-5">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.14em] text-slate-500">
+                        Result
+                      </p>
+                      <p className="mt-1 font-semibold text-white">
+                        {study.result}
+                      </p>
+                    </div>
+                    <span className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-sky-400 transition group-hover:text-sky-300">
+                      Read case study
+                      <ArrowIcon />
+                    </span>
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
