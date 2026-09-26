@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MobileNav } from "@/components/mobile-nav";
 import { ArchitectureDiagram } from "@/components/architecture-diagram";
 import { Reveal } from "@/components/reveal";
 import { TransitionLink } from "@/components/page-transition";
@@ -102,12 +103,23 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </a>
           </div>
 
-          <a
-            href={`mailto:${site.email}`}
-            className="rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-medium text-sky-300 transition hover:border-sky-300/60 hover:bg-sky-400/20 hover:text-white"
-          >
-            Email me
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={`mailto:${site.email}`}
+              className="hidden rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-medium text-sky-300 transition hover:border-sky-300/60 hover:bg-sky-400/20 hover:text-white sm:inline-flex"
+            >
+              Email me
+            </a>
+            <MobileNav
+              items={[
+                { label: "Selected work", href: "/#impact" },
+                { label: "Approach", href: "/#approach" },
+                { label: "Contact", href: "/#contact" },
+                { label: "Blog", href: site.blog, external: true },
+                { label: "Email me", href: `mailto:${site.email}`, external: true, emphasis: true },
+              ]}
+            />
+          </div>
         </nav>
       </header>
 
@@ -129,7 +141,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">
               {study.category}
             </p>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
               {study.title}
             </h1>
             <p className="mt-6 max-w-3xl text-xl leading-8 text-slate-200 sm:text-2xl">

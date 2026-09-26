@@ -1,4 +1,5 @@
 import { TransitionLink } from "@/components/page-transition";
+import { MobileNav } from "@/components/mobile-nav";
 import { Reveal } from "@/components/reveal";
 import { caseStudies } from "@/content/case-studies";
 import { site } from "@/content/site";
@@ -102,12 +103,23 @@ export default function Home() {
             </a>
           </div>
 
-          <a
-            href="#contact"
-            className="rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-medium text-sky-300 transition hover:border-sky-300/60 hover:bg-sky-400/20 hover:text-white"
-          >
-            Let&apos;s talk
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              className="hidden rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-medium text-sky-300 transition hover:border-sky-300/60 hover:bg-sky-400/20 hover:text-white sm:inline-flex"
+            >
+              Let&apos;s talk
+            </a>
+            <MobileNav
+              items={[
+                { label: "Impact", href: "#impact" },
+                { label: "Approach", href: "#approach" },
+                { label: "Leadership", href: "#leadership" },
+                { label: "Blog", href: site.blog, external: true },
+                { label: "Let's talk", href: "#contact", emphasis: true },
+              ]}
+            />
+          </div>
         </nav>
       </header>
 
