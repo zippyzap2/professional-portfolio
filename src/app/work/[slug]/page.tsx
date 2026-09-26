@@ -90,6 +90,14 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <Link className="transition hover:text-white" href="/#contact">
               Contact
             </Link>
+            <a
+              className="transition hover:text-white"
+              href={site.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
+            </a>
           </div>
 
           <a

@@ -91,6 +91,14 @@ export default function Home() {
             <a className="transition hover:text-white" href="#leadership">
               Leadership
             </a>
+            <a
+              className="transition hover:text-white"
+              href={site.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
+            </a>
           </div>
 
           <a
