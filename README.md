@@ -44,4 +44,4 @@ src/
 
 ## Deployment
 
-The project is ready to deploy on Vercel. Import the repository into Vercel, or run the production build locally with `npm run build`.
+The project is ready to deploy on Vercel. Import the repository into Vercel, or run the production build locally with `npm run build`. Register your own domain if you like, I registered in Spaceship.
