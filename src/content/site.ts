@@ -1,6 +1,6 @@
 export const site = {
   name: "Satish Kumar Bezawada",
-  role: "Senior Software Engineer",
+  role: "Senior AI Engineer",
   location: "United States",
   email: "satishcode9@gmail.com",
   linkedIn: "https://www.linkedin.com/in/k-dev-engineer/",

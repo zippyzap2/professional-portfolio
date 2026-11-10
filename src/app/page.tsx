@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { TransitionLink } from "@/components/page-transition";
 import { MobileNav } from "@/components/mobile-nav";
 import { Reveal } from "@/components/reveal";
@@ -129,10 +130,11 @@ export default function Home() {
         <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-8 sm:pt-12">
-          <div className="max-w-4xl animate-fade-up">
+          <div className="grid animate-fade-up gap-10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start lg:gap-16">
+            <div className="order-2 max-w-4xl lg:order-none">
             <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-slate-300">
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
-              Senior Software Engineer
+              Senior AI Engineer
             </div>
 
             <h1 className="max-w-4xl text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
@@ -216,6 +218,30 @@ export default function Home() {
                 Résumé
                 <ArrowIcon />
               </a>
+            </div>
+            </div>
+
+            <div className="relative order-first mx-auto w-full max-w-[17rem] sm:max-w-[18rem] lg:order-none lg:mt-16 lg:max-w-none lg:justify-self-end">
+              <div
+                className="absolute -inset-6 rounded-full bg-sky-500/15 blur-3xl"
+                aria-hidden="true"
+              />
+              <div className="relative rounded-full bg-gradient-to-br from-sky-300/90 via-cyan-400/40 to-blue-500/70 p-[3px] shadow-[0_24px_90px_rgba(14,165,233,0.2)]">
+                <div className="rounded-full bg-slate-950 p-2">
+                  <div className="relative aspect-square overflow-hidden rounded-full border border-sky-300/20 bg-[#020617]">
+                    <Image
+                      src="/satish-kumar-bezawada.png"
+                      alt="Portrait of Satish Kumar Bezawada"
+                      fill
+                      priority
+                      sizes="(max-width: 639px) 272px, 304px"
+                      className="object-cover object-center"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_62%,rgba(15,44,70,0.14)_82%,rgba(2,6,23,0.28)_100%)]" />
+                    <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-sky-200/15" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

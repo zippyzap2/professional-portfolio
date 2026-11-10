@@ -4,7 +4,7 @@ import "./globals.css";
 import { PageTransitionProvider } from "@/components/page-transition";
 
 export const metadata: Metadata = {
-  title: "Professional Portfolio | Senior Software Engineer",
+  title: "Professional Portfolio | Senior AI Engineer",
   description:
     "Portfolio of a senior software engineer specializing in distributed systems, cloud architecture, and technical leadership.",
 };
